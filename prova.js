@@ -1,6 +1,7 @@
 function getMovieInfosOMDB(title){
     const url = `https://www.omdbapi.com/?t=${title}&apikey=790af7bc`  
-       
+    let descriptionBody = document.querySelector("#descriptionBody")
+    
     fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -8,15 +9,8 @@ function getMovieInfosOMDB(title){
         if(data.Response == 'False'){
             descriptionBodyNotFound.textContent = "Filme não encontrado! Tente novamente.";
             descriptionBodyNotFound.style.marginBottom = '30px'
-            movieTitle.textContent = "Titulo do filme"
-            movieYear.textContent = "Ano"
-            movieGenre.textContent = "Genero"
-            movieRuntime.textContent = "Duração"
-            imdbRating.textContent = "Score"
-            movieInfo.textContent = "Descrição do filme."
-            movieWriter.textContent = "Nome do escritor"
-            movieDirector.textContent = "Nome do Diretor"
             moviePoster.style.backgroundImage = `url(filmeNaoEncontrado.png)`
+            descriptionBody.style.display = "none"
 
         } else {
             descriptionBodyNotFound.textContent = "";
